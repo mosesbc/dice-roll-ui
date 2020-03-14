@@ -1,0 +1,55 @@
+
+<div>
+  <form [formGroup]="rollForm" (ngSubmit)="onSubmit(rollForm.value)">
+    <div>
+      <div class="input-section">
+          <label for="noOfDice">
+            number of dice:
+          </label>
+          <select id="noOfDice" formControlName="noOfDice">
+              <option *ngFor='let diceCount of noOfDiceOptions'>{{diceCount}}</option>
+          </select>
+      </div>
+      
+      <div class="input-section">
+          <label for="noOfSide">
+            number of sides:
+          </label>
+          <select  id="noOfSide" formControlName="noOfSide">
+              <option *ngFor='let sides of noOfSideOptions'>{{sides}}</option>
+          </select>
+      </div>
+      
+      <div class="input-section">
+          <label for="noOfRolls">
+              number of roll:
+          </label>
+          <input id="noOfRolls" type="number" formControlName="noOfRolls">
+        </div>
+      
+        <button class="button" type="submit">Submit</button>
+        
+    </div>
+  </form>
+  <button (click)="onClear()">Clear</button>
+</div>
+
+<div *ngFor="let diceRollRequest of diceRollRequestList">
+  <hr>
+  
+  <h5>PARAMETERS PASSED</h5>
+  <div>
+      number of dice:{{ diceRollRequest.noOfDice }} , number of sides: {{ diceRollRequest.noOfSide }} , number of rolls: {{ diceRollRequest.noOfRolls }}
+  </div>
+  <h5>RESULT</h5>
+  <div *ngFor="let result of diceRollRequest.resultList"> 
+    The total:{{ result.total }} was rolled: {{ result.timesRolled }} time(s);
+  </div>
+  <div *ngIf="diceRollRequest.error">
+    {{diceRollRequest.error}}
+  </div>
+<h3>
+  
+</h3>
+
+</div>

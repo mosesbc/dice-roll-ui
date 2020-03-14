@@ -1,0 +1,11 @@
+{
+  "/dicerollapi": {
+      "target": "http://localhost:8080",
+      "secure": false,
+      "pathRewrite": {
+        "^/dicerollapi": ""
+      },
+      "changeOrigin": true,
+      "logLevel": "debug"
+  }
+}
