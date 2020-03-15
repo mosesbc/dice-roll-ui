@@ -19,8 +19,8 @@ export class RollDiceService {
     return this.http.get(`/dicerollapi/simulate?noOfDice=${noOfDice}&noOfSide=${noOfSide}&noOfRolls=${noOfRolls}`);
   }
 
-  getCombinations(noOfDice, noOfSide, noOfRolls) {
-    console.log(`rolling dice with parameters noOfDice:${noOfDice} noOfSide:${noOfSide} noOfRolls:${noOfRolls}`)
+  getCombinations() {
+    console.log(`getting combinations`)
     return this.http.get(`/dicerollapi/getCombinations`);
   }
 

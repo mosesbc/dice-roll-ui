@@ -21,6 +21,8 @@ export class RollDiceComponent implements OnInit {
 
   diceRollRequestList = [];
 
+  combinationList = [];
+
 
   constructor(
     private formBuilder: FormBuilder,
@@ -56,7 +58,12 @@ export class RollDiceComponent implements OnInit {
       console.log('Log the error here: ', error.error.error);
     });
 
-    
+    this.diceRollService.getCombinations().subscribe(data => {
+      console.log(data);
+      this.combinationList = Object.assign([], data);
+    }, error => {
+      console.log('Log the error here: ', error.error.error);
+    });
   }
 
   onClear() {
