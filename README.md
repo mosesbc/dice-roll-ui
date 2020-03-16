@@ -1,7 +1,3 @@
-# DiceRollUi
-
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 8.3.24.
-
 Divided the projects into two applications 
 Service:
 	github:
