@@ -2,6 +2,7 @@ import { Component, OnInit, NO_ERRORS_SCHEMA } from '@angular/core';
 import { FormBuilder } from '@angular/forms';
 import { format } from 'url';
 import { RollDiceService } from '../../services/roll-dice.service';
+import { Observable, Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-roll-dice',
@@ -19,11 +20,6 @@ export class RollDiceComponent implements OnInit {
   defaultnoOfSide = 4;
   defaultnoOfRolls = 1;
 
-  diceRollRequestList = [];
-
-  combinationList = [];
-
-
   constructor(
     private formBuilder: FormBuilder,
     private diceRollService: RollDiceService
@@ -37,43 +33,12 @@ export class RollDiceComponent implements OnInit {
       noOfSide: 4,
       noOfRolls: 1
     });
-
   }
 
   ngOnInit() {
-
   }
 
   onSubmit(formData) {
-    this.diceRollService.roll(formData.noOfDice, formData.noOfSide, formData.noOfRolls).subscribe(data => {
-      console.log(data);
-      this.diceRollRequestList.push(data);
-    }, error => {
-      this.diceRollRequestList.push({
-        noOfDice: formData.noOfDice,
-        noOfSide: formData.noOfSide,
-        noOfRolls: formData.noOfRolls,
-        error:error.error.error
-      });
-      console.log('Log the error here: ', error.error.error);
-    });
-
-    this.diceRollService.getCombinations().subscribe(data => {
-      console.log(data);
-      this.combinationList = Object.assign([], data);
-    }, error => {
-      console.log('Log the error here: ', error.error.error);
-    });
-  }
-
-  onClear() {
-    this.diceRollRequestList = [];
-    this.rollForm.reset();
-    this.rollForm.patchValue({
-      noOfDice: 1,
-      noOfSide: 4,
-      noOfRolls: 1
-    });
-
+    this.diceRollService.simulate(formData);
   }
 }

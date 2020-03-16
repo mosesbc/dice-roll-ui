@@ -1,0 +1,33 @@
+<div>
+    <h1>ASSIGNMENT 3 & 4</h1>
+    <div>display combinations from DB</div>
+
+    <div *ngFor="let combination of combinationList">
+    <h5>COMBINATION</h5>
+    <div>
+          number of dice:{{ combination.noOfDice }} , number of sides: {{ combination.noOfSide }}
+    </div>
+    <h5>SIMULATION</h5>
+    <div>
+        {{ combination.noOfSimulation }} simulations with at total of {{ combination.noOfRolls }} rolls
+    </div>
+
+    <h5>RELATIVE DISTRIBUTION</h5>
+    <div class="div-table">
+
+        <div class="div-table-row">
+           <div class="div-table-col" align="center">SUM</div>
+           <div  class="div-table-col">TIMES ROLLED</div>
+           <div  class="div-table-col">RELATIVE DISTRIBUTION</div>
+        </div>
+        <div *ngFor="let result of combination.distributions"> 
+           <div class="div-table-row">
+             <div class="div-table-col">{{ result.sum }}</div>
+             <div class="div-table-col">{{ result.timesRolled }}</div>
+             <div class="div-table-col">{{ result.percentage }}%</div>
+           </div>
+        </div>
+        
+    </div>
+    <hr>
+</div>
